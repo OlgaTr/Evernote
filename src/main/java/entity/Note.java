@@ -1,6 +1,6 @@
-package domain;
+package entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Note {
     private long id;
@@ -38,5 +38,15 @@ public class Note {
 
     public void setPublishDate(Date publishDate) {
         this.publishDate = publishDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", publishDate=" + publishDate +
+                '}';
     }
 }
