@@ -1,12 +1,37 @@
-package entity;
+package model;
 
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
+@Entity
+@Table(name = "NOTE")
 public class Note {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "TITLE")
     private String title;
+
+    @Column(name = "CONTENT")
     private String content;
+
+    @Column(name = "PUBLISH_DATE")
     private Date publishDate;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "NOTE_TAG",
+            joinColumns = @JoinColumn(name = "NOTE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "TAG_ID")
+    )
+    private Set<Tag> tags;
+
+    public Note() {
+
+    }
 
     public long getId() {
         return id;
@@ -38,6 +63,14 @@ public class Note {
 
     public void setPublishDate(Date publishDate) {
         this.publishDate = publishDate;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 
     @Override

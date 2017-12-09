@@ -1,6 +1,6 @@
 package dao;
 
-import entity.Note;
+import model.Note;
 
 import java.sql.SQLException;
 import java.util.List;
